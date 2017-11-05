@@ -1,43 +1,65 @@
-public class Main extends javax.swing.JDialog {
-private javax.swing.JPanel contentPane;
-private javax.swing.JButton buttonOK;
-private javax.swing.JButton buttonCancel;
+package functions;
 
-public Main(){
-setContentPane(contentPane);
-setModal(true);
-getRootPane().setDefaultButton(buttonOK);
+import javax.swing.*;
+import java.awt.event.*;
+import java.io.File;
 
-buttonOK.addActionListener(new java.awt.event.ActionListener(){public void actionPerformed(java.awt.event.ActionEvent e){onOK();}});
+public class Main extends JDialog {
+    private JPanel contentPane;
+    private JButton btnImport;
+    private JButton btnGenerate;
+    private String filePath = "";
+    private Parser parser;
+    public Main() {
+        setContentPane(contentPane);
+        setModal(true);
+        getRootPane().setDefaultButton(btnImport);
 
-buttonCancel.addActionListener(new java.awt.event.ActionListener(){public void actionPerformed(java.awt.event.ActionEvent e){onCancel();}});
+        btnImport.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onImport();
+            }
+        });
 
- // call onCancel() when cross is clicked
-setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-addWindowListener(new java.awt.event.WindowAdapter() {
-  public void windowClosing(java.awt.event.WindowEvent e) {
-   onCancel();
-  }
-});
+        btnGenerate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onGenerate();
+            }
+        });
 
- // call onCancel() on ESCAPE
-contentPane.registerKeyboardAction(  new java.awt.event.ActionListener() {    public void actionPerformed(java.awt.event.ActionEvent e) {      onCancel();
-    }  },  javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0),  javax.swing.JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);}
+    }
 
-private void onOK(){
- // add your code here
-dispose();
-}
+    private void onImport() {
+        JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(this);
 
-private void onCancel(){
- // add your code here if necessary
-dispose();
-}
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            filePath = file.getPath();
+            System.out.println("FilePath: " + filePath);
+        } else {
+            System.out.println("Cancelled");
+        }
+        System.out.println("Imported JSON");
 
-public static void main(String[] args){
-Main dialog = new Main();
-dialog.pack();
-dialog.setVisible(true);
-System.exit(0);
-}
+    }
+
+    private void onGenerate() {
+        if(filePath != ""){
+            if(parser != null){
+                parser.getParsedView().dispose();
+            }
+            parser = new Parser(filePath);
+            parser.generateView();
+
+        }
+
+    }
+
+    public static void main(String[] args) {
+        Main dialog = new Main();
+        dialog.pack();
+        dialog.setVisible(true);
+        System.exit(0);
+    }
 }

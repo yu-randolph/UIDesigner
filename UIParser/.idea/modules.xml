@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/UIParser.iml" filepath="$PROJECT_DIR$/UIParser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uibuilder/uibuilder.iml" filepath="$PROJECT_DIR$/uibuilder/uibuilder.iml" />
     </modules>
   </component>
 </project>
