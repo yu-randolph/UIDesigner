@@ -1,9 +1,33 @@
-.section{
-	border: 1px;
-	border-color: #FFFFFF;
-}
 .btn-tool{
+	top: 15px;
+	left: 15px;
+	margin-top: 10px;
+	background-color: #008CBA;
+	color: white;
+	font-size: 16px;
+	
+	border-color: #008CBA;
+	border-radius: 2px;
+	width: 70%;
+	height: 45px;
+}
+
+.lbl{
 	position:absolute; 
-	top: 150px;
-	left: 5px;
+	margin-left: 300px;
+	margin-top: 200px;
+	font-size: 16px;
+	font-family: "Verdana";
+}
+
+.txtfld{
+	position:absolute; 
+	margin-left: 455px;
+	margin-top: 200px;
+}
+
+.btn{
+	position:absolute; 
+	margin-left: 455px;
+	margin-top: 200px;
 }
