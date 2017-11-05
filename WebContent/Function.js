@@ -1,6 +1,6 @@
 
 document.getElementById("toJSON").addEventListener("click", function(e) { 
-	var html = document.getElementById("screen").outerHTML;
+	var html = document.getElementById("screen").innerHTML;
 	var json = window.himalaya.parse(html)
 	console.log('json:', json)
     download(JSON.stringify(json), 'UIDesign.json', 'application/json');
