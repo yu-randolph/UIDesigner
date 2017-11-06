@@ -1,38 +1,90 @@
 <html>
-<head>
-<title> UI-Designer</title>
-<link rel="stylesheet" type="text/css" href="UI-Style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-  $( function() {
-    $(".drag").draggable({
-    	cancel:false
-    });
-  } );
-  </script>
-<head>
-</head>
-<body>
-	<div id="main" style="width: 100%; height: 100%;">
-		<div id="toolbar" style="background-color: #D4DDD6; text-align: center; float:left; border: 1px solid black; width: 15%; height: 100%">
-			<button id="addLbl" class="btn-tool">Add Label</button><br>
-			<button id="addTxtfld" class="btn-tool">Add TextField</button><br>
-			<button id="addBtn" class="btn-tool">Add Button</button><br>
-			<button id="toJSON" class="btn-tool">Generate JSON</button>
-		</div>
 
-		<div id="screen" style="background-color: #DFE3E0; float: right; border: 1px solid black; width: 80%; height: 100%">
-			<label class="drag lbl">Email Address: </label>
+<head>
+  <title> UI-Designer</title>
+  <link rel="stylesheet" type="text/css" href="UI-Style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+  <script>
+    $(function() {
+      $(".drag").draggable({
+        cancel: false
+      });
+
+      //$(document).on('click','.draggable', function(e){
+
+      $('.resizable').resizable({
+        handles: {
+          'nw': '.ui-resizable-nw',
+          'ne': '.ui-resizable-ne',
+          'sw': '.ui-resizable-sw',
+          'se': '.ui-resizable-se',
+          'n': '.ui-resizable-n',
+          'e': '.ui-resizable-e',
+          's': '.ui-resizable-s',
+          'w': '.ui-resizable-w'
+        }
+      });
+      $('.draggable').draggable().on('click', function() {
+          if ($(this).is('.ui-draggable-dragging')) {
+            return;
+          } else {
+            $(this).draggable('option', 'disabled', true);
+            $(this).prop('contenteditable', 'true');
+            $(this).css('cursor', 'text');
+          }
+        })
+        .on('blur', function() {
+          $(this).draggable('option', 'disabled', false);
+          $(this).prop('contenteditable', 'false');
+          $(this).css('cursor', 'move');
+        });
+
+    });
+  </script>
+
+  <head>
+  </head>
+
+  <body>
+    <div id="main" style="width: 100%; height: 100%;">
+      <div id="toolbar" style="background-color: #D4DDD6; text-align: center; float:left; border: 1px solid black; width: 15%; height: 100%">
+        <button id="addLbl" class="btn-tool">Add Label</button><br>
+        <button id="addTxtfld" class="btn-tool">Add TextField</button><br>
+        <button id="addBtn" class="btn-tool">Add Button</button><br>
+        <button id="toJSON" class="btn-tool">Generate JSON</button>
+        <button>
+				<input type="file" id="fileInput" multiple onchange="showname()"/>
+			</button>
+      </div>
+
+      <div id="screen" style="background-color: #DFE3E0; float: right; border: 1px solid black; width: 80%; height: 100%">
+        
+        <!--<label class="drag lbl">Email Address: </label>
 			<input class="drag txtfld" type="text"></input> <br><br>
 			<label class="drag lbl">Password: </label>
 			<input class="drag txtfld" type="text"></input> <br><br>
 			<label class="drag lbl">Confirm Password: </label>
 			<input class="drag txtfld" type="text"></input> <br><br>
 			<input class="drag btn" type="submit" value="Create an Account!"></input>
-		</div>
-	</div>
-<script src="Function.js"></script>
-<script src="ConvertToJSON.js" ></script>
-</body>
+			<div class='resizable draggable'>
+    <input/>Resize Me
+    <div class="ui-resizable-handle ui-resizable-nw"></div>
+    <div class="ui-resizable-handle ui-resizable-ne"></div>
+    <div class="ui-resizable-handle ui-resizable-sw"></div>
+    <div class="ui-resizable-handle ui-resizable-se"></div>
+    <div class="ui-resizable-handle ui-resizable-n"></div>
+    <div class="ui-resizable-handle ui-resizable-s"></div>
+    <div class="ui-resizable-handle ui-resizable-e"></div>
+    <div class="ui-resizable-handle ui-resizable-w"></div>
+</div>-->
+      </div>
+    </div>
+    <script src="Function.js"></script>
+    <script src="ConvertToJSON.js"></script>
+
+  </body>
+
 </html>

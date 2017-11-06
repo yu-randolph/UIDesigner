@@ -30,13 +30,25 @@ public class Parser {
         components = new ArrayList<Component>();
         components = gson.fromJson(reader, REVIEW_TYPE); // contains the whole reviews list
         for (Component component: components) {
+            if(component.getType().contains("textfield")){
+                if(component.getWidth() > 125){
+                    component.setWidth(125);
+                }
+            }else if(component.getType().contains("button")){
+                if(component.getWidth() > 83){
+                    component.setWidth(83);
+                }
+            }
+            if(component.getHeight() > 13){
+                component.setHeight(13);
+            }
             System.out.println(component.getType());
             System.out.println(component.getText());
             System.out.println("Top:"+component.getY());
             System.out.println("Left"+component.getX());
             System.out.println("Height:"+component.getHeight());
-            System.out.println("Width"+component.getWidth());
-            System.out.println(component.getType());
+            System.out.println("Width:"+component.getWidth());
+
         }
     }
     public void addComponentsToPane(Container pane) {
@@ -48,14 +60,14 @@ public class Parser {
         for (int i=components.size()-1; i>=0; i--){
             Component component = components.get(i);
             if(component.getType().contains("label")){
-                pane.add(makeLabel(component.getText(),component.getX()+40,
-                        component.getY()+194, component.getWidth(), component.getHeight()));
+                pane.add(makeLabel(component.getText(),component.getX()-209,
+                        component.getY()-9, component.getWidth(), component.getHeight()));
             }else if(component.getType().contains("textfield")){
-                pane.add(makeTextField(component.getX()+195,
-                        component.getY()+191, component.getWidth()-10, component.getHeight()+5));
+                pane.add(makeTextField(component.getX()-209,
+                        component.getY()-9, component.getWidth(), component.getHeight()));
             }else{
-                pane.add(makeButton(component.getText(),component.getX()+195,
-                        component.getY()+191, component.getWidth(), component.getHeight()));
+                pane.add(makeButton(component.getText(),component.getX()-209,
+                        component.getY()-9, component.getWidth(), component.getHeight()));
             }
         }
     }
@@ -85,8 +97,11 @@ public class Parser {
 
         //Size and display the window.
         Insets insets = parsedView.getInsets();
-        parsedView.setSize(720 ,650 );
+        parsedView.setSize(806 ,1128 );
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        parsedView.setLocation(dim.width/2-parsedView.getSize().width/2, dim.height/2-parsedView.getSize().height/2);
         parsedView.setVisible(true);
+
     }
 
     public JFrame getParsedView() {
