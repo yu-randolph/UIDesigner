@@ -43,6 +43,10 @@
         });
 
     });
+
+    window.onload = function(){
+      document.getElementById("screen").innerHTML = "";
+    }
   </script>
 
   <head>
@@ -61,7 +65,6 @@
       </div>
 
       <div id="screen" style="background-color: #DFE3E0; float: right; border: 1px solid black; width: 80%; height: 100%">
-        
         <!--<label class="drag lbl">Email Address: </label>
 			<input class="drag txtfld" type="text"></input> <br><br>
 			<label class="drag lbl">Password: </label>
@@ -83,7 +86,7 @@
       </div>
     </div>
     <script src="Function.js"></script>
-    <script src="ConvertToJSON.js"></script>
+
 
   </body>
 

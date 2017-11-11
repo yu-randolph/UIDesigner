@@ -5,7 +5,7 @@
 	background-color: #008CBA;
 	color: white;
 	font-size: 16px;
-	
+
 	border-color: #008CBA;
 	border-radius: 2px;
 	width: 70%;
@@ -13,7 +13,7 @@
 }
 
 .lbl{
-	position:absolute; 
+	position:absolute;
 	margin-left: 300px;
 	margin-top: 200px;
 	font-size: 16px;
@@ -21,13 +21,21 @@
 }
 
 .txtfld{
-	position:absolute; 
+	position:absolute;
 	margin-left: 455px;
 	margin-top: 200px;
 }
+.textfield{
+	width: 500px;
+	height: 100px;
+}
+.button{
+	width: 500px;
+	height: 100px;
+}
 
 .btn{
-	position:absolute; 
+	position:absolute;
 	margin-left: 455px;
 	margin-top: 200px;
 }
@@ -38,7 +46,7 @@
 .resizable {
     border: 1px dashed #000000;
     position: relative;
-    min-height: 50px;
+    min-height: 20px;
 	overflow: hidden;
 }
 .ui-resizable-handle {
